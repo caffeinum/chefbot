@@ -9,13 +9,9 @@ import telebot
 
 load_dotenv()
 
-# logger = telebot.logger
-# telebot.logger.setLevel(logging.INFO)
-
 TOKEN = os.environ.get('TELEGRAM_KEY')
 bot = telebot.TeleBot(TOKEN)
 app = Flask(__name__)
-
 
 # if for some reason, your conversation with the chef gets weird, change the secret key 
 app.config['SECRET_KEY'] = 'top-NSFJSFDKFjkfsk!'
@@ -23,10 +19,6 @@ app.config['SECRET_KEY'] = 'top-NSFJSFDKFjkfsk!'
 @bot.message_handler(commands=['start'])
 def start(message):
     bot.reply_to(message, 'Hello, ' + message.from_user.first_name)
-
-@bot.callback_query_handler(func=lambda call: True)
-def test_callback(call): # <- passes a CallbackQuery type object to your function
-    logger.info(call)
 
 @bot.message_handler(func=lambda message: False, content_types=['text'])
 def echo_message(message):
