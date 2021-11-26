@@ -55,7 +55,7 @@ def getMessage():
 def webhook():
     bot.remove_webhook()
     bot.set_webhook(url='https://chefbot-caffeinum.vercel.app/' + TOKEN)
-    return Response("<p>Webhook updated: /%s</p>" % ('https://chefbot-caffeinum.vercel.app/' + TOKEN), mimetype="text/html")
+    return Response("<p>Webhook updated</p>", mimetype="text/html")
     # return "!", 200
 
 
