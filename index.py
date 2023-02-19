@@ -18,7 +18,7 @@ app.config['SECRET_KEY'] = 'top-NSFJSFDKFjkfsk!'
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.reply_to(message, 'Hello, ' + message.from_user.first_name)
+    bot.reply_to(message, f'Hello, {message.from_user.first_name}')
 
 @bot.message_handler(func=lambda message: False, content_types=['text'])
 def echo_message(message):
@@ -35,7 +35,7 @@ def process_message(message):
 
     bot.reply_to(message, answer)
 
-@app.route('/' + TOKEN, methods=['POST'])
+@app.route(f'/{TOKEN}', methods=['POST'])
 def getMessage():
     json_string = request.get_data().decode('utf-8')
     update = telebot.types.Update.de_json(json_string)
@@ -46,7 +46,7 @@ def getMessage():
 @app.route("/")
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url='https://chefbot-caffeinum.vercel.app/' + TOKEN)
+    bot.set_webhook(url=f'https://chefbot-caffeinum.vercel.app/{TOKEN}')
     return Response("<p>Webhook updated</p>", mimetype="text/html")
     # return "!", 200
 
